@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>		
+
+
+	<!-- 1.打印日志 -->		<!-- autoMappingBehavior:默认自动做对应 -->
+  	<settings>
+		<setting name="logImpl" value="LOG4J"/>	
+		<setting name="autoMappingBehavior" value="FULL"/>	
+	</settings>
+	
+	<!-- 2.实体类别名:xxxMapper.xml中resultType的别名(实体类路径) -->
+	<typeAliases>
+		<typeAlias type="com.po.Student"  alias="student"/>
+	</typeAliases>	
+	
+	<!-- 3.加载映射文件 -->
+	<mappers>
+		<mapper resource="com/dao/StudentMapper.xml"/>	<!-- xml路径 -->
+	</mappers>
+	
+
+	
+	
+		
+		
+	
+</configuration>

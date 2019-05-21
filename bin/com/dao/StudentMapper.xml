@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.StudentMapper">
+  <resultMap id="BaseResultMap" type="student">
+    <id column="sid"  property="sid" />
+    <result column="sname"  property="sname" />
+    <result column="adress" property="adress" />
+  </resultMap>
+ 
+
+   <!-- 查询所有用户 -->
+	<select id="queryStudent" resultMap="BaseResultMap">
+		select * from student
+	</select>
+
+	<!-- 通过id查询用户 -->
+	<select id="queryStudentById" parameterType="int" resultType="student">
+		select * from student where sid = #{value}
+	</select>
+  
+  	<!-- 修改用户信息 -->
+	<update id="updateStudent" parameterType="student">
+		update student
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="sname!=null and sname!=''">sname=#{sname},</if>
+			<if test="adress!=null and adress!=''">adress=#{adress},</if>
+	   	</trim>
+		where sid=#{sid} 
+	</update>
+	
+	<!-- 删除用户  -->
+	<delete id="deleteStudent" parameterType="int">
+		delete from student where sid = #{value}
+	</delete>
+	
+	<!-- 添加用户 -->
+	<insert id="addStudent" parameterType="student">
+		insert into student
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sname!=null and sname!=''">sname,</if>
+			<if test="adress!=null and adress!=''">adress,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sname!=null and sname!=''">#{sname},</if>
+			<if test="adress!=null and adress!=''">#{adress},</if>
+		</trim>
+	</insert>
+	
+	
+	
+
+  
+</mapper>
